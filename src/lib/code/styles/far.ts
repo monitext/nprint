@@ -1,0 +1,37 @@
+import { hex, bgHex, cols } from '../../cols/colorPack';
+
+export default {
+	name: 'high-contrast',
+	styles: {
+		'.hljs': [hex('#0ff'), bgHex('#000080')],
+		'.hljs-subst': [], // default
+		'.hljs-string': [hex('#ff0')],
+		'.hljs-attribute': [hex('#ff0')],
+		'.hljs-symbol': [hex('#ff0')],
+		'.hljs-bullet': [hex('#ff0')],
+		'.hljs-built_in': [hex('#ff0')],
+		'.hljs-template-tag': [hex('#ff0')],
+		'.hljs-template-variable': [hex('#ff0')],
+		'.hljs-addition': [hex('#ff0')],
+		'.hljs-keyword': [hex('#fff'), cols.bold],
+		'.hljs-selector-tag': [hex('#fff'), cols.bold],
+		'.hljs-section': [hex('#fff'), cols.bold],
+		'.hljs-type': [hex('#fff')],
+		'.hljs-name': [hex('#fff'), cols.bold],
+		'.hljs-selector-id': [hex('#fff')],
+		'.hljs-selector-class': [hex('#fff')],
+		'.hljs-variable': [hex('#fff')],
+		'.hljs-comment': [hex('#888')],
+		'.hljs-quote': [hex('#888')],
+		'.hljs-doctag': [hex('#888')],
+		'.hljs-deletion': [hex('#888')],
+		'.hljs-number': [hex('#0f0')],
+		'.hljs-regexp': [hex('#0f0')],
+		'.hljs-literal': [hex('#0f0')],
+		'.hljs-link': [hex('#0f0')],
+		'.hljs-meta': [hex('#008080')],
+		'.hljs-title': [cols.bold],
+		'.hljs-strong': [cols.bold],
+		'.hljs-emphasis': [cols.italic],
+	},
+};
