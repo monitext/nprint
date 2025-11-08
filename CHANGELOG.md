@@ -1,5 +1,14 @@
 # @monitext/nprint
 
+## 0.0.2
+
+### Patch Changes
+
+- Fix: minor fix on `render` fn
+
+  Due to forgotten `""` on multiple input join,
+  the render fn would introducde a "," between ouput
+
 ## 0.0.1
 
 ### Patch Changes
