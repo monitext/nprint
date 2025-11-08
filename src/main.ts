@@ -1,3 +1,4 @@
+import { log, error, warn } from './lib/lang/print';
 import { write, writeAsync, writeSync } from './lib/write/writeExtends';
 import { bgHex, cols, hex } from './lib/cols/colorPack';
 import { detectRuntime } from './lib/utils/getRuntime';
@@ -29,6 +30,11 @@ export {
 	cols,
 	hex,
 
+	// print
+	log,
+	warn,
+	error,
+
 	// runtime info
 	detectRuntime,
 	getTerminalWidth,
@@ -59,6 +65,11 @@ export const nprint = {
 	bgHex,
 	cols,
 	hex,
+
+	// print
+	log,
+	warn,
+	error,
 
 	// runtime info
 	detectRuntime,
