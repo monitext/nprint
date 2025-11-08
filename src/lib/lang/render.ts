@@ -13,7 +13,7 @@ export function createRenderer<T extends RenderingParam>(param?: T) {
 	const joinRenderRes = param?.join || false;
 
 	return function (...content: string[]) {
-		const nodeList = pseudoLangToTree(content.join());
+		const nodeList = pseudoLangToTree(content.join(""));
 		let renderedResult: string[];
 		let renderedLang;
 
