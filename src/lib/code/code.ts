@@ -1,7 +1,7 @@
-import hljs from 'highlight.js/lib/core';
-import { parseCode } from './parse';
-import { Theme, ThemeRegistry } from './regitery';
-import type { LanguageFn } from 'highlight.js';
+import hljs from "highlight.js/lib/core";
+import { parseCode } from "./parse";
+import { Theme, ThemeRegistry } from "./regitery";
+import type { LanguageFn } from "highlight.js";
 
 /**
  * Renders code content based on the specified language, theme, and rendering mode.
@@ -38,15 +38,15 @@ import type { LanguageFn } from 'highlight.js';
  * ```
  */
 function renderCode(param: { lang: string; content: string; theme?: Theme }) {
-	const themeKey = param.theme || 'githubDark';
+  const themeKey = param.theme || "githubDark";
 
-	const pseudoLang = parseCode(
-		param.lang,
-		param.content,
-		ThemeRegistry[themeKey],
-	);
+  const pseudoLang = parseCode(
+    param.lang,
+    param.content,
+    ThemeRegistry[themeKey],
+  );
 
-	return pseudoLang;
+  return pseudoLang;
 }
 
 /**
@@ -76,13 +76,13 @@ function renderCode(param: { lang: string; content: string; theme?: Theme }) {
  *```
  */
 export function code(param: CodeParam) {
-	return renderCode(param);
+  return renderCode(param);
 }
 
 export type CodeParam = {
-	lang: string;
-	content: string;
-	theme?: Theme;
+  lang: string;
+  content: string;
+  theme?: Theme;
 };
 
 /**
@@ -92,5 +92,5 @@ export type CodeParam = {
  * @param descriptor - A function that defines the syntax highlighting rules for the language.
  */
 export function registerLang(lang: string, descriptor: LanguageFn) {
-	hljs.registerLanguage(lang, descriptor);
+  hljs.registerLanguage(lang, descriptor);
 }

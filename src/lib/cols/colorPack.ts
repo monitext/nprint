@@ -1,5 +1,5 @@
-import { chalkCSSPolify, ChalkStyleKeys } from './colorPolify';
-import { writePseudoColorLang } from '../lang/pseudoLang';
+import { chalkCSSPolify, ChalkStyleKeys } from "./colorPolify";
+import { writePseudoColorLang } from "../lang/pseudoLang";
 
 /**
  * @fileoverview This file manages the application of chainable styles to strings
@@ -13,28 +13,28 @@ import { writePseudoColorLang } from '../lang/pseudoLang';
  * and applies them to content via the pseudo-language system.
  */
 export class ColorNode {
-	/** @property {string[]} styles - Accumulated styles for this node */
-	styles: string[];
+  /** @property {string[]} styles - Accumulated styles for this node */
+  styles: string[];
 
-	/**
-	 * Creates an instance of ColorNode.
-	 * @param {object} [param] - Optional parameters.
-	 * @param {string[]} [param.styles] - Initial styles to add to this node.
-	 * @param {string[]} [param.content] - Optional content (unused for now).
-	 */
-	constructor(param?: { styles?: string[]; content?: string[] }) {
-		this.styles = param?.styles ?? [];
-	}
+  /**
+   * Creates an instance of ColorNode.
+   * @param {object} [param] - Optional parameters.
+   * @param {string[]} [param.styles] - Initial styles to add to this node.
+   * @param {string[]} [param.content] - Optional content (unused for now).
+   */
+  constructor(param?: { styles?: string[]; content?: string[] }) {
+    this.styles = param?.styles ?? [];
+  }
 
-	/**
-	 * Applies all accumulated styles to one or more strings.
-	 * This is the final method in the chain.
-	 * @param {...string[]} content - The strings to style.
-	 * @returns {string} The styled string in pseudo-language format.
-	 */
-	public apply(...content: string[]): string {
-		return writePseudoColorLang(this.styles, content.join(''));
-	}
+  /**
+   * Applies all accumulated styles to one or more strings.
+   * This is the final method in the chain.
+   * @param {...string[]} content - The strings to style.
+   * @returns {string} The styled string in pseudo-language format.
+   */
+  public apply(...content: string[]): string {
+    return writePseudoColorLang(this.styles, content.join(""));
+  }
 }
 
 /**
@@ -53,24 +53,24 @@ export class ColorNode {
  * const styled = cols.bold.italic("Hello");
  */
 export function chainFn(param?: { styles?: string[] }) {
-	const currentNode = new ColorNode(param);
-	const styleFn = function (..._text: string[]) {};
+  const currentNode = new ColorNode(param);
+  const styleFn = function (..._text: string[]) {};
 
-	const P = new Proxy(styleFn, {
-		apply(_target, _thisArg, argumentsList) {
-			return currentNode.apply(...(argumentsList as string[]));
-		},
-		get(target, property) {
-			if (property in chalkCSSPolify) {
-				// Prepend the new style to the current styles
-				const styles = [property as string, ...currentNode.styles];
-				return chainFn({ styles });
-			}
-			return (target as any)[property] as any;
-		},
-	});
+  const P = new Proxy(styleFn, {
+    apply(_target, _thisArg, argumentsList) {
+      return currentNode.apply(...(argumentsList as string[]));
+    },
+    get(target, property) {
+      if (property in chalkCSSPolify) {
+        // Prepend the new style to the current styles
+        const styles = [property as string, ...currentNode.styles];
+        return chainFn({ styles });
+      }
+      return (target as any)[property] as any;
+    },
+  });
 
-	return P;
+  return P;
 }
 
 /**
@@ -80,7 +80,7 @@ export function chainFn(param?: { styles?: string[] }) {
  * It is both a callable function and an object with chaining properties.
  */
 export type ColorChain = {
-	[K in ChalkStyleKeys]: ((...content: string[]) => string) & ColorChain;
+  [K in ChalkStyleKeys]: ((...content: string[]) => string) & ColorChain;
 };
 
 /**
@@ -99,8 +99,8 @@ type hex = number | string;
  * prefixed with '#'.
  */
 type hexadecimal =
-	| `#${hex}${hex}${hex}`
-	| `#${hex}${hex}${hex}${hex}${hex}${hex}`;
+  | `#${hex}${hex}${hex}`
+  | `#${hex}${hex}${hex}${hex}${hex}${hex}`;
 
 /**
  * @constant cols
@@ -118,8 +118,8 @@ export const cols = chainFn() as unknown as ColorChain;
  * @returns {HexChain} A chainable object.
  */
 export function hex(hexadecimal: hexadecimal) {
-	const hexFn = chainFn({ styles: ['hex' + hexadecimal] });
-	return hexFn as unknown as ColorFn;
+  const hexFn = chainFn({ styles: ["hex" + hexadecimal] });
+  return hexFn as unknown as ColorFn;
 }
 
 /**
@@ -130,6 +130,6 @@ export function hex(hexadecimal: hexadecimal) {
  * @returns {HexChain} A chainable object.
  */
 export function bgHex(hexadecimal: hexadecimal) {
-	const hexFn = chainFn({ styles: ['bgHex' + hexadecimal] });
-	return hexFn as unknown as ColorFn;
+  const hexFn = chainFn({ styles: ["bgHex" + hexadecimal] });
+  return hexFn as unknown as ColorFn;
 }

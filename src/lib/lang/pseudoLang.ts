@@ -9,7 +9,7 @@
  * @returns A string representing the opening tag with the specified style.
  */
 function openingTag(style: string): string {
-	return `[mtxt-style[[${style}]]]`;
+  return `[mtxt-style[[${style}]]]`;
 }
 
 /**
@@ -17,7 +17,7 @@ function openingTag(style: string): string {
  * @returns A string representing the closing tag.
  */
 function closingTag(): string {
-	return `[[/mtxt-style]]`;
+  return `[[/mtxt-style]]`;
 }
 
 /**
@@ -39,24 +39,24 @@ function closingTag(): string {
  * ```
  */
 export function splitByPseudoColorLangTags(text: string): string[] {
-	const regex = /(\[mtxt-style\[\[(.*?)\]\]\])|(\[\[\/mtxt-style\]\])/g;
-	const result: string[] = [];
-	let lastIndex = 0;
-	let match;
+  const regex = /(\[mtxt-style\[\[(.*?)\]\]\])|(\[\[\/mtxt-style\]\])/g;
+  const result: string[] = [];
+  let lastIndex = 0;
+  let match;
 
-	while ((match = regex.exec(text)) !== null) {
-		if (match.index > lastIndex) {
-			result.push(text.slice(lastIndex, match.index));
-		}
-		result.push(match[0]);
-		lastIndex = regex.lastIndex;
-	}
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      result.push(text.slice(lastIndex, match.index));
+    }
+    result.push(match[0]);
+    lastIndex = regex.lastIndex;
+  }
 
-	if (lastIndex < text.length) {
-		result.push(text.slice(lastIndex));
-	}
+  if (lastIndex < text.length) {
+    result.push(text.slice(lastIndex));
+  }
 
-	return result;
+  return result;
 }
 
 /** Matches and extracts the style from an opening pseudo-language tag.
@@ -71,8 +71,8 @@ export function splitByPseudoColorLangTags(text: string): string[] {
  * ```
  */
 export function matchOpeningTag(text: string): string | null {
-	const match = text.match(/\[mtxt-style\[\[(.*?)\]\]\]/);
-	return match ? match[1] : null;
+  const match = text.match(/\[mtxt-style\[\[(.*?)\]\]\]/);
+  return match ? match[1] : null;
 }
 
 /** Checks if the given text contains a closing pseudo-language tag.
@@ -87,7 +87,7 @@ export function matchOpeningTag(text: string): string | null {
  * ```
  */
 export function matchClosingTag(text: string): boolean {
-	return /\[\[\/mtxt-style\]\]/.test(text);
+  return /\[\[\/mtxt-style\]\]/.test(text);
 }
 
 /** Wraps the given text with pseudo-language style tags based on the provided styles.
@@ -105,14 +105,14 @@ export function matchClosingTag(text: string): boolean {
  * ```
  */
 export function writePseudoColorLang(styles: string[], text: string): string {
-	const styling = styles.map((s) => s.trim());
-	let result = text;
-	for (const style of styling) {
-		result = wrap(result, style);
-	}
-	return result;
+  const styling = styles.map((s) => s.trim());
+  let result = text;
+  for (const style of styling) {
+    result = wrap(result, style);
+  }
+  return result;
 }
 
 function wrap(text: string, style: string) {
-	return `${openingTag(style)}${text}${closingTag()}`;
+  return `${openingTag(style)}${text}${closingTag()}`;
 }

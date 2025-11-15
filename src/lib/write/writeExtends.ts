@@ -1,26 +1,26 @@
-import { CodeParam, code as codeStr } from '../code/code';
-import { bgHex, cols, hex } from '../cols/colorPack';
-import { Theme } from '../code/regitery';
+import { CodeParam, code as codeStr } from "../code/code";
+import { bgHex, cols, hex } from "../cols/colorPack";
+import { Theme } from "../code/regitery";
 import {
-	AsyncWriteFn,
-	createWritingVar,
-	GenericWriteFn,
-	joinWithConstrain,
-	WriteFn,
-	WritingVar,
-} from './writeHelpers';
-import { horizontalRuleParam, hr } from '../utils/horizontalRule';
+  AsyncWriteFn,
+  createWritingVar,
+  GenericWriteFn,
+  joinWithConstrain,
+  WriteFn,
+  WritingVar,
+} from "./writeHelpers";
+import { horizontalRuleParam, hr } from "../utils/horizontalRule";
 
-type ExtendedWriteParams = Omit<WritingVar, 'configs'> & {
-	pretty: {
-		setCodeTheme(s: Theme): void;
-		hr(param: horizontalRuleParam): void;
-	};
-	cols: typeof cols;
-	hex: typeof hex;
-	code: (p: CodeParam) => string;
-	bgHex: typeof bgHex;
-	push: WritingVar['push'];
+type ExtendedWriteParams = Omit<WritingVar, "configs"> & {
+  pretty: {
+    setCodeTheme(s: Theme): void;
+    hr(param: horizontalRuleParam): void;
+  };
+  cols: typeof cols;
+  hex: typeof hex;
+  code: (p: CodeParam) => string;
+  bgHex: typeof bgHex;
+  push: WritingVar["push"];
 };
 
 /**
@@ -35,16 +35,16 @@ type ExtendedWriteParams = Omit<WritingVar, 'configs'> & {
  *            If the provided function is synchronous (`writeFn`), it returns the result of `writeSync`.
  */
 export function write<T extends GenericWriteFn<ExtendedWriteParams>>(
-	fn: T,
+  fn: T,
 ): T extends AsyncWriteFn<ExtendedWriteParams>
-	? ReturnType<typeof writeAsync>
-	: ReturnType<typeof writeSync> {
-	const isAsync = fn.constructor.name === 'AsyncFunction';
-	if (isAsync) {
-		return writeAsync(fn as AsyncWriteFn<ExtendedWriteParams>) as any;
-	} else {
-		return writeSync(fn as WriteFn<ExtendedWriteParams>) as any;
-	}
+  ? ReturnType<typeof writeAsync>
+  : ReturnType<typeof writeSync> {
+  const isAsync = fn.constructor.name === "AsyncFunction";
+  if (isAsync) {
+    return writeAsync(fn as AsyncWriteFn<ExtendedWriteParams>) as any;
+  } else {
+    return writeSync(fn as WriteFn<ExtendedWriteParams>) as any;
+  }
 }
 
 /**
@@ -59,30 +59,30 @@ export function write<T extends GenericWriteFn<ExtendedWriteParams>>(
  * @returns The result of rendering with constraints, based on the configurations.
  */
 export function writeSync(fn: WriteFn<ExtendedWriteParams>) {
-	const { configs, pretty, push } = createWritingVar({
-		configs: { theme: undefined as Theme | undefined },
-	});
+  const { configs, pretty, push } = createWritingVar({
+    configs: { theme: undefined as Theme | undefined },
+  });
 
-	fn({
-		pretty: {
-			...pretty,
-			setCodeTheme(s) {
-				configs.theme = s;
-			},
-			hr(param) {
-				push(hr(param));
-			},
-		},
-		push,
-		cols,
-		hex,
-		bgHex,
-		code(param) {
-			return codeStr({ ...param, theme: param.theme || configs.theme });
-		},
-	});
+  fn({
+    pretty: {
+      ...pretty,
+      setCodeTheme(s) {
+        configs.theme = s;
+      },
+      hr(param) {
+        push(hr(param));
+      },
+    },
+    push,
+    cols,
+    hex,
+    bgHex,
+    code(param) {
+      return codeStr({ ...param, theme: param.theme || configs.theme });
+    },
+  });
 
-	return joinWithConstrain({ ...configs });
+  return joinWithConstrain({ ...configs });
 }
 
 /**
@@ -103,28 +103,28 @@ export function writeSync(fn: WriteFn<ExtendedWriteParams>) {
  *          with the generated configurations.
  */
 export async function writeAsync(fn: AsyncWriteFn<ExtendedWriteParams>) {
-	const { configs, pretty, push } = createWritingVar({
-		configs: { theme: undefined as Theme | undefined },
-	});
+  const { configs, pretty, push } = createWritingVar({
+    configs: { theme: undefined as Theme | undefined },
+  });
 
-	await fn({
-		pretty: {
-			...pretty,
-			setCodeTheme(s) {
-				configs.theme = s;
-			},
-			hr(param) {
-				push(hr(param));
-			},
-		},
-		push,
-		cols,
-		hex,
-		bgHex,
-		code(param) {
-			return codeStr({ ...param, theme: param.theme || configs.theme });
-		},
-	});
+  await fn({
+    pretty: {
+      ...pretty,
+      setCodeTheme(s) {
+        configs.theme = s;
+      },
+      hr(param) {
+        push(hr(param));
+      },
+    },
+    push,
+    cols,
+    hex,
+    bgHex,
+    code(param) {
+      return codeStr({ ...param, theme: param.theme || configs.theme });
+    },
+  });
 
-	return joinWithConstrain({ ...configs });
+  return joinWithConstrain({ ...configs });
 }

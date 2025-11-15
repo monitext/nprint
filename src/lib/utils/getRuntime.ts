@@ -9,15 +9,15 @@
  * - `"unknown"` if the runtime cannot be determined.
  */
 export function detectRuntime():
-	| 'bun'
-	| 'deno'
-	| 'node'
-	| 'browser'
-	| 'unknown' {
-	if (typeof Bun !== 'undefined') return 'bun';
-	if (typeof Deno !== 'undefined') return 'deno';
-	if (typeof process !== 'undefined' && process.versions?.node) return 'node';
-	if (typeof window !== 'undefined' && typeof window.document !== 'undefined')
-		return 'browser';
-	return 'unknown';
+  | "bun"
+  | "deno"
+  | "node"
+  | "browser"
+  | "unknown" {
+  if (typeof Bun !== "undefined") return "bun";
+  if (typeof Deno !== "undefined") return "deno";
+  if (typeof process !== "undefined" && process.versions?.node) return "node";
+  if (typeof window !== "undefined" && typeof window.document !== "undefined")
+    return "browser";
+  return "unknown";
 }

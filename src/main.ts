@@ -1,92 +1,92 @@
-import { log, error, warn } from './lib/lang/print';
-import { write, writeAsync, writeSync } from './lib/write/writeExtends';
-import { bgHex, cols, hex } from './lib/cols/colorPack';
-import { detectRuntime } from './lib/utils/getRuntime';
-import { getTerminalWidth } from './lib/utils/terminal';
-import { code, registerLang } from './lib/code/code';
-import { hr } from './lib/utils/horizontalRule';
+import { log, error, warn } from "./lib/lang/print";
+import { write, writeAsync, writeSync } from "./lib/write/writeExtends";
+import { bgHex, cols, hex } from "./lib/cols/colorPack";
+import { detectRuntime } from "./lib/utils/getRuntime";
+import { getTerminalWidth } from "./lib/utils/terminal";
+import { code, registerLang } from "./lib/code/code";
+import { hr } from "./lib/utils/horizontalRule";
 import {
-	createRenderer,
-	render,
-	renderToBrowser,
-	renderToNodeLike,
-} from './lib/lang/render';
+  createRenderer,
+  render,
+  renderToBrowser,
+  renderToNodeLike,
+} from "./lib/lang/render";
 import {
-	writeCore,
-	writeCoreAsync,
-	writeCoreSync,
-} from './lib/write/writeCore';
+  writeCore,
+  writeCoreAsync,
+  writeCoreSync,
+} from "./lib/write/writeCore";
 
 export {
-	// writing utilities
-	write,
-	writeAsync,
-	writeSync,
-	writeCore,
-	writeCoreAsync,
-	writeCoreSync,
-	// colors
-	bgHex,
-	cols,
-	hex,
+  // writing utilities
+  write,
+  writeAsync,
+  writeSync,
+  writeCore,
+  writeCoreAsync,
+  writeCoreSync,
+  // colors
+  bgHex,
+  cols,
+  hex,
 
-	// print
-	log,
-	warn,
-	error,
+  // print
+  log,
+  warn,
+  error,
 
-	// runtime info
-	detectRuntime,
-	getTerminalWidth,
+  // runtime info
+  detectRuntime,
+  getTerminalWidth,
 
-	// code rendering
-	code,
-	registerLang,
+  // code rendering
+  code,
+  registerLang,
 
-	// layout
-	hr,
+  // layout
+  hr,
 
-	// renderers
-	createRenderer,
-	render,
-	renderToBrowser,
-	renderToNodeLike,
+  // renderers
+  createRenderer,
+  render,
+  renderToBrowser,
+  renderToNodeLike,
 };
 
 export const nprint = {
-	// writing utilities
-	write,
-	writeAsync,
-	writeSync,
-	writeCore,
-	writeCoreAsync,
-	writeCoreSync,
-	// colors
-	bgHex,
-	cols,
-	hex,
+  // writing utilities
+  write,
+  writeAsync,
+  writeSync,
+  writeCore,
+  writeCoreAsync,
+  writeCoreSync,
+  // colors
+  bgHex,
+  cols,
+  hex,
 
-	// print
-	log,
-	warn,
-	error,
+  // print
+  log,
+  warn,
+  error,
 
-	// runtime info
-	detectRuntime,
-	getTerminalWidth,
+  // runtime info
+  detectRuntime,
+  getTerminalWidth,
 
-	// code rendering
-	code,
-	registerLang,
+  // code rendering
+  code,
+  registerLang,
 
-	// layout
-	hr,
+  // layout
+  hr,
 
-	// renderers
-	createRenderer,
-	render,
-	renderToBrowser,
-	renderToNodeLike,
+  // renderers
+  createRenderer,
+  render,
+  renderToBrowser,
+  renderToNodeLike,
 };
 
 export default nprint;
