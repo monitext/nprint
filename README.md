@@ -35,13 +35,13 @@ You can use `nprint` in two ways:
 #### Using the Wrapper
 
 ```typescript
-import { nprint } from "@monitext/nprint";
+import { nprint } from '@monitext/nprint';
 
 const output = nprint.write(({ push }) => {
-  const { cols } = nprint;
-  push(cols.red('Error: Something went wrong!'));
-  push(cols.green('Success: Operation completed'));
-  push(cols.blue.bold('Bold blue text'));
+ const { cols } = nprint;
+ push(cols.red('Error: Something went wrong!'));
+ push(cols.green('Success: Operation completed'));
+ push(cols.blue.bold('Bold blue text'));
 });
 
 nprint.log(output); // Wrapper around console.log
@@ -50,12 +50,12 @@ nprint.log(output); // Wrapper around console.log
 #### Using the Render Function
 
 ```typescript
-import { write, render, cols } from "@monitext/nprint";
+import { write, render, cols } from '@monitext/nprint';
 
 const output = write(({ push }) => {
-  push(cols.red('Error: Something went wrong!'));
-  push(cols.green('Success: Operation completed'));
-  push(cols.blue.bold('Bold blue text'));
+ push(cols.red('Error: Something went wrong!'));
+ push(cols.green('Success: Operation completed'));
+ push(cols.blue.bold('Bold blue text'));
 });
 
 console.log(...render(output));
@@ -66,9 +66,9 @@ console.log(...render(output));
 ```typescript
 import { nprint } from '@monitext/nprint';
 
-const myHex = nprint.hex("#05ffacff");
+const myHex = nprint.hex('#05ffacff');
 
-nprint.log(myHex.bold.underline("Custom styled text"));
+nprint.log(myHex.bold.underline('Custom styled text'));
 ```
 
 ### Syntax Highlighting
@@ -81,14 +81,14 @@ import javascript from 'highlight.js/lib/languages/javascript';
 registerLang('javascript', javascript);
 
 const output = code({
-  lang: 'javascript',
-  content: `
+ lang: 'javascript',
+ content: `
 function greet(name) {
   console.log(\`Hello, \${name}!\`);
 }
 greet("World");
   `,
-  theme: 'githubDark', // or "monokai", "vs", "far"
+ theme: 'githubDark', // or "monokai", "vs", "far"
 });
 
 console.log(...render(output));
@@ -104,9 +104,9 @@ The main function for creating styled output. Automatically detects whether the 
 
 ```typescript
 const output = write(({ push, cols, hex, bgHex, code, pretty }) => {
-  push('Regular text');
-  push(cols.red('Red text'));
-  push(hex('#FF0000')('Hex red text'));
+ push('Regular text');
+ push(cols.red('Red text'));
+ push(hex('#FF0000')('Hex red text'));
 });
 ```
 
@@ -116,7 +116,7 @@ Synchronous version of the `write` function.
 
 ```typescript
 const output = writeSync(({ push, cols }) => {
-  push(cols.green('Synchronous green text'));
+ push(cols.green('Synchronous green text'));
 });
 ```
 
@@ -126,8 +126,8 @@ Asynchronous version of the `write` function.
 
 ```typescript
 const output = await writeAsync(async ({ push, cols }) => {
-  await someAsyncOperation();
-  push(cols.blue('Asynchronous blue text'));
+ await someAsyncOperation();
+ push(cols.blue('Asynchronous blue text'));
 });
 ```
 
@@ -167,9 +167,9 @@ Render syntax-highlighted code:
 
 ```typescript
 const output = code({
-  lang: 'typescript',
-  content: 'const x = 42;',
-  theme: 'githubDark',
+ lang: 'typescript',
+ content: 'const x = 42;',
+ theme: 'githubDark',
 });
 ```
 
@@ -207,14 +207,14 @@ const runtime = detectRuntime();
 
 ```typescript
 write(({ push, pretty }) => {
-  pretty.hr({
-    char: "=",
-    width: 50,
-    title: "Section Title",
-    align: "center",
-    titleColor: "blue",
-    hrColor: "gray",
-  });
+ pretty.hr({
+  char: '=',
+  width: 50,
+  title: 'Section Title',
+  align: 'center',
+  titleColor: 'blue',
+  hrColor: 'gray',
+ });
 });
 ```
 
@@ -224,8 +224,8 @@ write(({ push, pretty }) => {
 
 ```typescript
 write(({ push, cols, hex, bgHex }) => {
-  push(cols.bold(cols.underline(cols.red('Bold underlined red'))));
-  push(bgHex('#1a1a1a')(hex('#00ff00')('Green on dark background')));
+ push(cols.bold(cols.underline(cols.red('Bold underlined red'))));
+ push(bgHex('#1a1a1a')(hex('#00ff00')('Green on dark background')));
 });
 ```
 
@@ -233,9 +233,9 @@ write(({ push, cols, hex, bgHex }) => {
 
 ```typescript
 const output = await writeAsync(async ({ push, cols }) => {
-  push(cols.blue('Loading data...'));
-  const data = await fetchData();
-  push(cols.green('Data loaded successfully!'));
+ push(cols.blue('Loading data...'));
+ const data = await fetchData();
+ push(cols.green('Data loaded successfully!'));
 });
 ```
 

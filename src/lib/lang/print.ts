@@ -1,4 +1,4 @@
-import { render } from "./render";
+import { render } from './render';
 
 /**
  * Represents the parameters accepted by the print functions.
@@ -21,13 +21,13 @@ type PrintFnParams = (string | string[] | { toString(): void }[])[];
  * - `"warn"`  → Warning-level console output
  * - `"error"` → Error-level console output
  */
-type PrintMode = "log" | "warn" | "error";
+type PrintMode = 'log' | 'warn' | 'error';
 
 /**
  * Core printing utility used internally by `log`, `warn`, and `error`.
  *
  * This function takes arbitrary input (plain strings, arrays, or objects implementing `toString`)
- * and flattens them recursively into a single array of string segments.  
+ * and flattens them recursively into a single array of string segments.
  * Each segment is then passed to the renderer (`render`) which resolves environment-specific
  * formatting (e.g. ANSI for TTY, CSS for browser).
  *
@@ -43,7 +43,7 @@ type PrintMode = "log" | "warn" | "error";
 function print(mode: PrintMode, ...params: PrintFnParams) {
 	const result: string[] = params
 		.flat(Infinity)
-		.map(s => (typeof s === "string" ? s : s?.toString?.() ?? ""));
+		.map((s) => (typeof s === 'string' ? s : (s?.toString?.() ?? '')));
 
 	console[mode](...render(...result));
 }
@@ -75,7 +75,7 @@ function asPrintFn(m: PrintMode) {
  * log("Task:", nprint.cols.green("completed successfully"));
  * ```
  */
-export const log = asPrintFn("log");
+export const log = asPrintFn('log');
 
 /**
  * Prints warning messages using `console.warn`.
@@ -85,7 +85,7 @@ export const log = asPrintFn("log");
  * warn("Deprecated:", nprint.cols.yellow("use `initNew()` instead"));
  * ```
  */
-export const warn = asPrintFn("warn");
+export const warn = asPrintFn('warn');
 
 /**
  * Prints error messages using `console.error`.
@@ -95,4 +95,4 @@ export const warn = asPrintFn("warn");
  * error("Failed:", nprint.cols.red("file not found"));
  * ```
  */
-export const error = asPrintFn("error");
+export const error = asPrintFn('error');
