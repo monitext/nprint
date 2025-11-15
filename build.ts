@@ -1,4 +1,4 @@
-import { Bundle, GenerateDts } from '@monitext-dev/builder';
+import { Bundle, GenerateDts } from '@monitext/devtools/builder';
 import { dependencies } from './package.json';
 
 Bundle({
