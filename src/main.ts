@@ -11,11 +11,16 @@ import {
   renderToBrowser,
   renderToNodeLike,
 } from "./lib/lang/render";
+
 import {
   writeCore,
   writeCoreAsync,
   writeCoreSync,
 } from "./lib/write/writeCore";
+
+import { box } from "./lib/effects/box";
+import { pad } from "./lib/effects/pad";
+import { vbar } from "./lib/effects/vbar";
 
 export {
   // writing utilities
@@ -34,6 +39,11 @@ export {
   log,
   warn,
   error,
+
+  //effects
+  box,
+  pad,
+  vbar,
 
   // runtime info
   detectRuntime,
@@ -70,6 +80,11 @@ export const nprint = {
   log,
   warn,
   error,
+
+  //effects
+  box,
+  pad,
+  vbar,
 
   // runtime info
   detectRuntime,
