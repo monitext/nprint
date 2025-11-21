@@ -1,6 +1,5 @@
 import { cols } from '../cols/colorPack';
 import { ChalkStyleKeys } from '../cols/colorPolify';
-import { render } from '../lang/render';
 
 interface VBarOptions {
   bar?: string;
@@ -31,12 +30,3 @@ export function vbar(
 
   return `${result}`;
 }
-
-// Example
-console.log(
-  ...render(
-    vbar(`Welcome to fish, the friendly interactive shell\nType help for instructions on how to use fish`,
-      { color: 'cyan', bold: true },
-    ),
-  ),
-);
