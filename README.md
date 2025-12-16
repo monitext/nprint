@@ -218,6 +218,41 @@ write(({ push, pretty }) => {
 });
 ```
 
+## Text Effects
+
+### Box
+
+Create a box around text with customizable colors and rounded corners:
+
+```typescript
+import { box } from "@monitext/nprint";
+
+const boxedText = box("Hello, World!", { color: "blue", rounded: true });
+console.log(boxedText);
+```
+
+### Pad
+
+Add horizontal and vertical padding to text:
+
+```typescript
+import { pad } from "@monitext/nprint";
+
+const paddedText = pad("Hello, World!", { x: 2, y: 1 });
+console.log(paddedText);
+```
+
+### Vertical Bar
+
+Add a vertical bar to the left of text with customizable styling:
+
+```typescript
+import { vbar } from "@monitext/nprint";
+
+const barredText = vbar("Hello, World!", { color: "gray", bold: true, pad: 2 });
+console.log(barredText);
+```
+
 ## Advanced Usage
 
 ### Custom Color Combinations
