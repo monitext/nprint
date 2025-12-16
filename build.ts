@@ -1,5 +1,6 @@
 import { Bundle, GenerateDts } from "@monitext/devtools/builder";
 import { dependencies } from "./package.json";
+import { build } from "tsup";
 
 Bundle({
   mode: "file",
@@ -15,7 +16,7 @@ Bundle({
         minifyWhitespace: true,
         eternal: [...Object.keys(dependencies)],
       },
-      extraOpts: { mainFields: ["main"] },
+      extraOpts: { mainFields: ["main"], sourcemap: true },
     },
     {
       entry: "./src/main.ts",
@@ -28,14 +29,17 @@ Bundle({
         minifyWhitespace: true,
         eternal: [],
       },
-      extraOpts: { mainFields: ["main"] },
+      extraOpts: { mainFields: ["main"], sourcemap: true },
     },
   ],
 });
 
-GenerateDts({
-  mode: "file",
-  entry: "./src/main.ts",
-  outfile: "./dist/lib.ts",
-  tsconfig: "./tsconfig.build.json",
+build({
+  entry: ["./src/main.ts"],
+  format: ["cjs", "esm"],
+  minify: true,
+  minifySyntax: true,
+  minifyWhitespace: true,
+  external: [...Object.keys(dependencies)],
+  sourcemap: true,
 });
