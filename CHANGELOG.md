@@ -1,5 +1,18 @@
 # @monitext/nprint
 
+## 0.3.0
+
+### Features
+
+- Added Text Effects `vbar` `vbar` `vbar`.
+
+## 0.1.0
+
+### Minor Changes
+
+- Introduced `nprint.log`, `nprint.warn`, and `nprint.error` helpers with automatic rendering support.
+- Added unified print pipeline with `render(...strings)` integration.
+
 ## 0.0.2
 
 ### Patch Changes
@@ -8,13 +21,6 @@
 
   Due to forgotten `""` on multiple input join,
   the render fn would introducde a "," between ouput
-
-## 0.1.0
-
-### Minor Changes
-
-- Introduced `nprint.log`, `nprint.warn`, and `nprint.error` helpers with automatic rendering support.
-- Added unified print pipeline with `render(...strings)` integration.
 
 ## 0.0.1
 
