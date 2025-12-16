@@ -1,6 +1,6 @@
 # @monitext/nprint
 
-## v0.2.0
+## Introduction
 
 Nprint is a cross-platform console logging and styling utility that works seamlessly in Node.js, Deno, Bun, and browsers (Yes — even browser consoles support full color!). It provides a rich API for color manipulation, syntax highlighting, and terminal utilities, making it an essential tool for developers who want to enhance their console output.
 
